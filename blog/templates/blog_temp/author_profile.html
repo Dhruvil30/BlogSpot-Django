@@ -1,0 +1,20 @@
+{% extends 'blog_temp/base.html' %}
+
+{% block head %}
+    <title>Author Profile Page</title>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="content-section">
+            <div class="media">
+                <div class="media-body">
+                    <h2 class="account-heading">{{ author.username }}</h2>
+                    <p class="text-secondary">{{ author.email }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

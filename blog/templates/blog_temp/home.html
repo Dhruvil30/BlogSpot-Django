@@ -1,0 +1,33 @@
+{% extends 'blog_temp/base.html' %}
+
+{% block head %}
+    <title>Home Page</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <nav class="navbar navbar-light bg-light">
+            <form class="form-inline" method="POST">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" name="SearchBar" type="search" placeholder="Search" aria-label="Search" required>
+                <button class="btn btn-outline-info" type="submit" >Search</button>
+            </form>
+        </nav>
+    </div>
+
+    <div class="container">
+        {% for post in posts %}
+            <article class="media content-section">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a class="mr-2" href="{% url 'blog-authorProfile' author=post.author %}">{{ post.author }}</a>
+                        <small class="text-muted">{{ post.date_posted|date:"F d,Y" }}</small>
+                    </div>
+                    <h3 class="article-title">{{ post.title }}</h3>
+                    <p class="article-content">{{ post.content }}</p>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+
+{% endblock %}
