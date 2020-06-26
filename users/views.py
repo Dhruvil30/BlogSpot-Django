@@ -60,11 +60,15 @@ def profile(request):
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance=request.user)
 
-        # From is valid
+        # Form is valid
         if form.is_valid():
             form.save()
             messages.success(request,'Your account data has been updated.')
             return redirect('user-profile')
+
+        # Form is not valid
+        else:
+            messages.warning(request,'Same username or password already exists.')
 
     else:
         form = UserUpdateForm(instance=request.user)
